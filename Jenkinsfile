@@ -4,8 +4,8 @@ pipeline {
     
     environment {
       SONAR_CRED = credentials("SONAR_CREDENTIALS")
-	  NEXUS_CRED = credentials("NEXUS_CREDENTIALS")
-	  BUILD_FILE = "build.xml"
+	    NEXUS_CRED = credentials("NEXUS_CREDENTIALS")
+	    BUILD_FILE = "build.xml"
     }
 
     stages {
@@ -32,7 +32,7 @@ pipeline {
                     }
 					
 					env.SEMVER = sh(
-                          script: "grep -i 'name=version' ${BUILD_FILE} | awk '{print \$3}' | awk -F "=" '{print \$2}' | tr -d '\"'",
+                          script: "grep -i 'name=version' ${BUILD_FILE} | awk '{print \$3}' | awk -F "\=" '{print \$2}' | tr -d '\"'",
                           returnStdout: true,
                     ).trim()
                       
@@ -75,7 +75,7 @@ pipeline {
             }
         }
 		
-		stage('Put to Nexus') {
+		    stage('Put to Nexus') {
             steps {
                 sh """
                     curl -v -k -u ${env.NEXUS_CRED} \
