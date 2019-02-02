@@ -32,7 +32,7 @@ pipeline {
                     }
 					
 					env.SEMVER = sh(
-                          script: "grep -i 'name=version' ${BUILD_FILE} | awk '{print \$3}' | awk -F "\=" '{print \$2}' | tr -d '\"'",
+                          script: "grep -i 'name=version' ${BUILD_FILE} | awk '{print \$3}' | awk -F '=' '{print \$2}' | tr -d '\"'",
                           returnStdout: true,
                     ).trim()
                       
